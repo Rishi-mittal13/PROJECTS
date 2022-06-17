@@ -1,0 +1,25 @@
+import random
+import math
+print("\n\n\t\t\t  <-----: 😍 WELCOME TO THE GUESS THE NUMBER GAME 😍 :----->\t\t\t\n\n")
+u1=int(input("enter lower bound of your game:  "))
+u2=int(input("enter upper bound of your game : "))
+print("\n")
+ch=round(math.log(u2-u1,2))
+print(f"you have {ch} chances to guess the number,\nLet's GO---->\n\n\n")
+x=random.randint(u1,u2)
+b=ch
+for i in range(ch):
+    a=int(input("guess the number : "))
+    b-=1
+    if a==x:
+        print("Congratulation! You Won 😀🎆🎉😀\n\nGame Finished.\n")
+        break
+    elif a>(x-10) and a<(x+10):
+        print(f"You Are So.. Close 😯 {b} Chance Is Left.\n")
+    elif a>x:
+        print(f"Your Number Is To Large😂 {b} Chance Is Left.\n")
+    elif a<x:
+        print(f"Your Number Is To Small😁 {b} Chance Is Left.\n")  
+else:
+    print(f"Game Over! You Loose The Game!!😫 😫 Number Is {x}\n\n Thank You !!😊") 
+
