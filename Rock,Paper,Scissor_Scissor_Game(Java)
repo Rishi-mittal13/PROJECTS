@@ -1,0 +1,118 @@
+//Rock , Paper , Scissor Game, let's Do it.
+
+import java.util.Scanner;//importing Scanner Class.
+import java.util.Random;//importing rrandom class
+public class Exe_2 {
+    public static void main(String[] args){ 
+        //Starting of our Program.
+        Scanner in = new Scanner(System.in);//intializing  Scanner object by the name of in.
+        Random rand = new Random();//initializing random object by name of rand
+
+        //Starting interface.
+        System.out.printf("\t\t\t\t---------------:WELCOME TO THE ROCK,PAPER,SCISSOR GAME:---------------\t\n\n\n\n");
+        System.out.printf("Hello User, Enter Your Name: ");//To, receive the name of user.
+        String name =in.nextLine();
+        System.out.printf("Hello %s ,Enter number of chances you want: ",name);
+        int chances = in.nextInt();
+        int Win_Score = (chances/2)+1;//Wining score.
+
+        //Play Start We intiallize a for loop According to number of chances.
+        int R=0;
+        while(R==0){
+             //intializing bot and user Score
+             int c=0;
+             int u=0;             
+        for(int i=0;i<chances;i++){
+            int N =rand.nextInt(3); // 0 For Rock , 1 For Paper , 2 For Scissor.
+            //taking Choice of User. 
+            System.out.printf("\n\nEnter Your Choice, \nPress 0 For ROCK, Press 1 For PAPER, Press 2 For SCISSOR.\nEnter: ");
+            int a = in.nextInt();
+            System.out.println();
+
+            //taking first condition when both bot and user have select same choice . note:- we have to continue that chance.
+            if(a==N){
+                System.out.println("TIE, Your And Computer Choice Are Same.\n"+(chances-i)+" Chances are left");
+                i--;
+            }
+
+            //intiallizing all condition of user win.
+            else if (((a==0)&&(N==2))  || ((a==1)&&(N==0))  || ((a==2)&&(N==1))){
+                u+=1;
+                System.out.printf("YOU WON!"); 
+                /*intiallizing live score For our User  */
+                if(u>c){
+                    System.out.printf("=> %s is leading With %d:%d",name,u,c);
+                }          
+                else if (u<c){
+                    System.out.printf("=> Bot Is Leading With %d:%d",u,c);
+                }   
+                else{
+                    System.out.printf("=> %s And Bot Are Equal position By %d:%d",name,u,c);
+                }
+            }
+
+            //intiallizing all condition of Bot win.
+            else if(((N==0)&&(a==2))  || ((N==1)&&(a==0))  || ((N==2)&&(a==1))) {
+                c+=1;
+                /*intiallizing live score For our User  */
+                if(u>c){
+                    System.out.printf("=> %s is leading With %d:%d",name,u,c);
+                }          
+                else if (u<c){
+                    System.out.printf("=> Bot Is Leading With %d:%d",u,c);
+                }   
+                else{
+                    System.out.printf("=> %s And Bot Are Equal position By %d:%d",name,u,c);
+                }
+            }
+
+            //When user entered a Anonymous number.
+            else{
+                System.out.printf("%s You Entered Wrong Number,Please Try Again! Thank You.\n",name);
+                i--;
+            }
+
+            //Announcing the Scores .
+            if(u==Win_Score){
+                System.out.printf("\n\n\nCONGRATULATIONS! %s YOU WON .\n Press 1 for Play again, Press 0 For Exit: ",name);
+                int result = in.nextInt();
+                if(result==1){
+                    R=0;
+                    break;
+                }
+                else{
+                    R=1;
+                    System.out.println("\n\nThank You So Much,\nGood Bye!");
+                    break;
+                }
+            }
+            else if (c==Win_Score){
+                System.out.printf("\n\n\n OOP'S %s You loose.\nPress 1 for Play again, Press 0 For Exit: ",name);
+                int result = in.nextInt();
+                if(result==1){
+                    R=0;
+                    break;
+                }
+                else{
+                    R=1;
+                    System.out.println("\n\nThank You So Much,\nGood Bye!");
+                    break;
+                }
+            }
+            else if ((c==Win_Score-1) && (u==Win_Score-1) && (chances%2==0)){
+                System.out.printf("\n\n\n ohh! Game Tied.\nPress 1 for Play again, Press 0 For Exit: ");
+                int result = in.nextInt();
+                if(result==1){
+                    R=0;
+                    break;
+                }
+                else{
+                    R=1;
+                    System.out.println("\n\nThank You So Much,\nGood Bye!");
+                    break;
+                }
+            }
+        }}
+        in.close();
+    }
+}
